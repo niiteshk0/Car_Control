@@ -38,6 +38,9 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        steeringUI = FindObjectOfType<StreeingWheelUI>();
+        accelerateUI = FindObjectOfType<AccelerateUI>();
+
     }
 
     void FixedUpdate()
@@ -64,7 +67,6 @@ public class CarController : MonoBehaviour
         if(accelerateUI.IsPressed())
         {
             float direction = isBackward ? -1f : 1f;
-            Debug.Log("Direction " + direction);
             ApplyMotor(direction);
         }
         else

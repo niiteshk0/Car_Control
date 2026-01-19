@@ -101,7 +101,7 @@ MonoBehaviour:
     - line: '|   androidDefaultWindowHeight: 1080'
     - line: '|   androidMinimumWindowWidth: 400'
     - line: '|   androidMinimumWindowHeight: 300'
-    - line: '|   androidFullscreenMode: 1'
+    - line: '|   androidFullscreenMode: 3'
     - line: '|   androidAutoRotationBehavior: 1'
     - line: '|   androidPredictiveBackSupport: 0'
     - line: '|   androidApplicationEntry: 2'
@@ -995,7 +995,7 @@ MonoBehaviour:
         m_ExportAsGoogleAndroidProject: 0
         m_DebugSymbolLevel: 1
         m_DebugSymbolFormat: 5
-        m_CurrentDeploymentTargetId: 3085652691000GN
+        m_CurrentDeploymentTargetId: __builtin__target_default
         m_BuildType: 2
         m_BuildAppBundle: 0
         m_IPAddressToConnect: 
