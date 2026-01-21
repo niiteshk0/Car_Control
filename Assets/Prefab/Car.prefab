@@ -1246,9 +1246,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8673409365336662311}
   - component: {fileID: 1609449106190108671}
-  - component: {fileID: 6575685057624538606}
   - component: {fileID: 1169968185564507129}
+  - component: {fileID: 6575685057624538606}
   - component: {fileID: 1862640879556276864}
+  - component: {fileID: -8075022777916209971}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1306,35 +1307,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6575685057624538606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8866234783352757695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56f0e40d1c20c848a390be11fe3fc12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frontLeftCollider: {fileID: 7989980548173416088}
-  frontRightCollider: {fileID: 7915764617412102003}
-  rearLeftCollider: {fileID: 8950001473043632854}
-  rearRightCollider: {fileID: 6062812143219478717}
-  frontLeftMesh: {fileID: 6422273345312619519}
-  frontRightMesh: {fileID: 4978787828628580987}
-  rearLeftMesh: {fileID: 6296213138783260277}
-  rearRightMesh: {fileID: 7257276839245165880}
-  maxMotorTorque: 2000
-  maxSteerAngle: 180
-  isBackward: 0
-  driftSpeedThreshold: 150
-  driftFriction: 0
-  normalFriction: 1.2
-  isDrifting: 0
-  steeringUI: {fileID: 0}
-  accelerateUI: {fileID: 0}
 --- !u!114 &1169968185564507129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1332,38 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6575685057624538606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866234783352757695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56f0e40d1c20c848a390be11fe3fc12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  frontLeftCollider: {fileID: 7989980548173416088}
+  frontRightCollider: {fileID: 7915764617412102003}
+  rearLeftCollider: {fileID: 8950001473043632854}
+  rearRightCollider: {fileID: 6062812143219478717}
+  frontLeftMesh: {fileID: 6422273345312619519}
+  frontRightMesh: {fileID: 4978787828628580987}
+  rearLeftMesh: {fileID: 6296213138783260277}
+  rearRightMesh: {fileID: 7257276839245165880}
+  maxMotorTorque: 2000
+  maxSteerAngle: 180
+  isBackward: 0
+  driftSpeedThreshold: 150
+  driftFriction: 0
+  normalFriction: 1.2
+  isDrifting: 0
+  steeringUI: {fileID: 0}
+  accelerateUI: {fileID: 0}
+  speed:
+    m_InternalValue: 0
 --- !u!114 &1862640879556276864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1406,3 +1410,20 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-8075022777916209971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866234783352757695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1

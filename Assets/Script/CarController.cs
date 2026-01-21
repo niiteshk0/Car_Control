@@ -1,8 +1,9 @@
 using System.Data.Common;
 using Unity.Mathematics;
 using UnityEngine;
+using Unity.Netcode;
 
-public class CarController : MonoBehaviour
+public class CarController : NetworkBehaviour
 {
     [Header("Wheels")]
     public WheelCollider frontLeftCollider;
@@ -32,11 +33,20 @@ public class CarController : MonoBehaviour
     public StreeingWheelUI steeringUI;
     public AccelerateUI accelerateUI;
 
+    [Header("Networking Settings")]
+    public NetworkVariable<float> speed =
+        new NetworkVariable<float>(
+            0,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Server
+        );
+
     float steerInput;
     Rigidbody rb;
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
         steeringUI = FindObjectOfType<StreeingWheelUI>();
         accelerateUI = FindObjectOfType<AccelerateUI>();
@@ -45,6 +55,8 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!IsOwner) return;
+
         steerInput = steeringUI.GetSteer();
         float speed = rb.linearVelocity.magnitude;
 

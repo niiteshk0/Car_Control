@@ -17,10 +17,12 @@ public class UIManager : MonoBehaviour
 
         startHostButton.onClick.AddListener(()=>{
             NetworkManager.Singleton.StartHost();
+            Debug.Log("Host Started");
         });
 
-        startHostButton.onClick.AddListener(()=>{
+        startClientButton.onClick.AddListener(()=>{
             NetworkManager.Singleton.StartClient();
+            Debug.Log("Client Started");
         });
     }
 }

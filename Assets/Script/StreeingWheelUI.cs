@@ -21,6 +21,7 @@ public class StreeingWheelUI : MonoBehaviour, IDragHandler, IEndDragHandler, IPo
 
     void Update()
     {
+        
         if(!isDragging && smoothReturn && Mathf.Abs(currentAngle) > 0.1f)
         {
             currentAngle = Mathf.Lerp(currentAngle, 0f, Time.deltaTime * wheelReturnSpeed);
