@@ -1,19 +1,51 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : NetworkBehaviour
 {
-    [SerializeField] Transform target;
     [SerializeField] Vector3 offset = new Vector3(0,4,-5);
     [SerializeField] float smothSpeed = 5f;
     [SerializeField] bool lookATTarget = true;
-    Vector3 velocity = Vector3.zero;
+    
+    Transform target;
+    Vector3 velocity;
+    Camera cam;
+    AudioListener audioListener;
+
+    private void Awake() {
+        cam = GetComponent<Camera>();   
+        audioListener = GetComponent<AudioListener>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        
+        // Only enable camera for the owner of this car
+        if (!IsOwner)
+        {
+            // Disable camera for other players' cars
+            if (cam != null)
+                cam.enabled = false;
+            
+            if (audioListener != null)
+                audioListener.enabled = false;
+            
+            enabled = false; // Disable this script
+            return;
+        }
+        
+        // Set target to the parent car (not the camera itself!)
+        target = transform.parent;
+    }   
 
     void LateUpdate()
     {
-        if(target == null)
+        if(!target)
             return;
 
-        transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref velocity, smothSpeed);
+        Vector3 desiredPos = target.position + target.rotation * offset;
+        transform.position = Vector3.SmoothDamp(transform.position, desiredPos, ref velocity, smothSpeed);
 
         if(lookATTarget)
             transform.LookAt(target);

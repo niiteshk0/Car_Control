@@ -34,11 +34,11 @@ public class CarController : NetworkBehaviour
     public AccelerateUI accelerateUI;
 
     [Header("Networking Settings")]
-    public NetworkVariable<float> speed =
+    public NetworkVariable<float> networkSpeed =
         new NetworkVariable<float>(
             0,
             NetworkVariableReadPermission.Everyone,
-            NetworkVariableWritePermission.Server
+            NetworkVariableWritePermission.Owner
         );
 
     float steerInput;
@@ -60,8 +60,11 @@ public class CarController : NetworkBehaviour
         steerInput = steeringUI.GetSteer();
         float speed = rb.linearVelocity.magnitude;
 
-        // ApplyMotor(Input.GetAxis("Vertical"));
-
+        if (IsOwner)
+        {
+            networkSpeed.Value = speed;
+        }
+        
         ApplySteering();  
 
         bool isHardTurn = Mathf.Abs(steerInput * maxSteerAngle) > 80f;
@@ -76,7 +79,7 @@ public class CarController : NetworkBehaviour
             ApplyRealDrift(false);
         }
 
-        if(accelerateUI.IsPressed())
+        if(accelerateUI.IsPressed() || Input.GetAxis("Vertical") != 0)
         {
             float direction = isBackward ? -1f : 1f;
             ApplyMotor(direction);
@@ -151,5 +154,10 @@ public class CarController : NetworkBehaviour
         transform.position = pos;
         transform.rotation = rot;
     }
+
+    // void UpdateSpeedometer()
+    // {
+    //     speedText.text = carController.speed.Value.ToString("F0") + " km/h";
+    // }
 
 }
